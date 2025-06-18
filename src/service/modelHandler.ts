@@ -17,8 +17,39 @@
 import { getModels } from './api';
 import { StatusBarWidget } from '../StatusBarWidget';
 import { IModelInfo } from '../utils/schema';
-
-let modelsList: IModelInfo[] = [];
+const myModelInfo: IModelInfo = {
+  _id: "model-001",
+  delimiting_tokens: {
+    start_token: "<|start|>",
+    middle_token: "<|middle|>",
+    end_token: "<|end|>",
+  },
+  disclaimer: {
+    accepted: true,
+  },
+  display_name: "My Awesome Model",
+  doc_link: "https://example.com/my-awesome-model-docs",
+  endpoints: {
+    generation_endpoint: "https://api.example.com/v1/generate",
+    moderation_endpoint: "https://api.example.com/v1/moderate",
+  },
+  license: {
+    name: "MIT",
+    link: "https://opensource.org/licenses/MIT",
+  },
+  model_id: "awesome-model-v1",
+  moderations: {
+    hap: 0.1,
+    social_bias: 0.05,
+  },
+  parameters: {
+    temperature: 0.8,
+    max_new_tokens: 150,
+  },
+  prompt_type: 2,
+  token_limit: 2048,
+};
+let modelsList: IModelInfo[] = [myModelInfo];
 let currentModel: IModelInfo | undefined = undefined;
 
 export function getModelsList(): IModelInfo[] {
