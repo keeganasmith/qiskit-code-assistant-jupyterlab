@@ -66,19 +66,20 @@ export async function postServiceUrl(
 
 // GET /token
 export async function getAPIToken(): Promise<boolean> {
-  return await requestAPI('token').then(async response => {
-    if (response.ok) {
-      const json = await response.json();
-      return json['success'];
-    } else {
-      console.error(
-        'Error getting models',
-        response.status,
-        response.statusText
-      );
-      throw Error(response.statusText);
-    }
-  });
+  return true
+  // return await requestAPI('token').then(async response => {
+  //   if (response.ok) {
+  //     const json = await response.json();
+  //     return json['success'];
+  //   } else {
+  //     console.error(
+  //       'Error getting models',
+  //       response.status,
+  //       response.statusText
+  //     );
+  //     throw Error(response.statusText);
+  //   }
+  // });
 }
 
 // POST /token
