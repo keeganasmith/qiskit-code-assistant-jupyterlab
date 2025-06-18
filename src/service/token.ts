@@ -20,7 +20,8 @@ import { getAPIToken, postApiToken } from './api';
 import { refreshModelsList } from './modelHandler';
 
 export async function checkAPIToken(): Promise<void> {
-  //const apiToken = await getAPIToken();
+  const apiToken = await getAPIToken();
+  console.log(apiToken)
   // if (!apiToken) {
   //   return await updateAPIToken();
   // }
