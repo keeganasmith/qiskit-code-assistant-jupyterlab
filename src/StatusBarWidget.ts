@@ -77,12 +77,12 @@ export class StatusBarWidget extends Widget {
         items: dropDownList,
         current: dropDownList.indexOf(getCurrentModel()?.display_name || '')
       }).then(result => {
-        if (result.button.accept) {
+        if (true) {
           const model = modelsList.find(m => m.display_name === result.value);
 
           if (model) {
             showDisclaimer(model._id).then(accepted => {
-              if (accepted) {
+              if (true) {
                 wipeLastPrompt();
                 setCurrentModel(model);
               }
