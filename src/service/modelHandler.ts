@@ -67,14 +67,15 @@ export function setCurrentModel(model?: IModelInfo): void {
 }
 
 export async function refreshModelsList(): Promise<void> {
-  return await getModels()
-    .then(models => {
-      modelsList = models;
-      currentModel =
-        modelsList.find(m => m._id === currentModel?._id) || models?.[0];
-      StatusBarWidget.widget?.refreshStatusBar();
-    })
-    .catch(reason => {
-      throw new Error(reason);
-    });
+  return;
+  // return await getModels()
+  //   .then(models => {
+  //     modelsList = models;
+  //     currentModel =
+  //       modelsList.find(m => m._id === currentModel?._id) || models?.[0];
+  //     StatusBarWidget.widget?.refreshStatusBar();
+  //   })
+  //   .catch(reason => {
+  //     throw new Error(reason);
+  //   });
 }
