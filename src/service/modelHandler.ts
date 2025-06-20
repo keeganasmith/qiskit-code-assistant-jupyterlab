@@ -53,6 +53,7 @@ let modelsList: IModelInfo[] = [myModelInfo];
 let currentModel: IModelInfo | undefined = undefined;
 
 export function getModelsList(): IModelInfo[] {
+  console.log("got here, models list is: ", modelsList)
   return modelsList;
 }
 
