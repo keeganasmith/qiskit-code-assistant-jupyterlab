@@ -14,34 +14,34 @@
  * limitations under the License.
  */
 
-import { postModelPrompt } from './api';
-import { showDisclaimer } from './disclaimer';
-import { getCurrentModel } from './modelHandler';
-import { checkAPIToken } from './token';
-import { StatusBarWidget } from '../StatusBarWidget';
-import { ICompletionReturn, IModelPromptResponse } from '../utils/schema';
-
+//import { postModelPrompt } from './api';
+// import { showDisclaimer } from './disclaimer';
+// import { getCurrentModel } from './modelHandler';
+// import { checkAPIToken } from './token';
+//import { StatusBarWidget } from '../StatusBarWidget';
+import { ICompletionReturn } from '../utils/schema';
+//import { IModelPromptResponse } from '../utils/schema'
 export const CHAR_LIMIT = 4_000;
 
-async function promptPromise(
-  model: string,
-  requestText: string
-): Promise<ICompletionReturn> {
-  // Show loading icon in status bar
-  StatusBarWidget.widget.setLoadingStatus();
+// async function promptPromise(
+//   model: string,
+//   requestText: string
+// ): Promise<ICompletionReturn> {
+//   // Show loading icon in status bar
+//   StatusBarWidget.widget.setLoadingStatus();
 
-  return postModelPrompt(model, requestText).then(
-    (response: IModelPromptResponse) => {
-      const items: string[] = [];
-      response.results.map(results => items.push(results.generated_text));
-      return {
-        items,
-        prompt_id: response.prompt_id,
-        input: requestText
-      };
-    }
-  );
-}
+//   return postModelPrompt(model, requestText).then(
+//     (response: IModelPromptResponse) => {
+//       const items: string[] = [];
+//       response.results.map(results => items.push(results.generated_text));
+//       return {
+//         items,
+//         prompt_id: response.prompt_id,
+//         input: requestText
+//       };
+//     }
+//   );
+// }
 
 export async function autoComplete(text: string): Promise<ICompletionReturn> {
   const emptyReturn: ICompletionReturn = {
