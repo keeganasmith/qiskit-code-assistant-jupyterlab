@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import { getModels } from './api';
 import { StatusBarWidget } from '../StatusBarWidget';
 import { IModelInfo } from '../utils/schema';
 const myModelInfo: IModelInfo = {
