@@ -68,6 +68,7 @@ export function setCurrentModel(model?: IModelInfo): void {
 
 export async function refreshModelsList(): Promise<void> {
   return;
+  // result = await getModels
   // return await getModels()
   //   .then(models => {
   //     modelsList = models;

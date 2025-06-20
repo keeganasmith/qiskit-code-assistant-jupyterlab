@@ -108,25 +108,25 @@ export async function postApiToken(apiToken: string): Promise<void> {
 }
 
 // GET /models
-export async function getModels(): Promise<IModelInfo[]> {
-  return await requestAPI('models').then(async response => {
-    //if (response.ok) {
-    console.log(response)
-    // if(true){
-    //   const json = await response.json();
-    //   console.debug('models list:', json);
-    //   return json['models'];
-    // } else {
-    //   notifyInvalid(response);
-    //   console.error(
-    //     'Error getting models',
-    //     response.status,
-    //     response.statusText
-    //   );
-    //   throw Error(response.statusText);
-    // }
-  });
-}
+// export async function getModels(): Promise<IModelInfo[]> {
+//   return await requestAPI('models').then(async response => {
+//     //if (response.ok) {
+//     console.log(response)
+//     // if(true){
+//     //   const json = await response.json();
+//     //   console.debug('models list:', json);
+//     //   return json['models'];
+//     // } else {
+//     //   notifyInvalid(response);
+//     //   console.error(
+//     //     'Error getting models',
+//     //     response.status,
+//     //     response.statusText
+//     //   );
+//     //   throw Error(response.statusText);
+//     // }
+//   });
+// }
 
 // GET /model/{model_id}
 export async function getModel(model_id: string): Promise<IModelInfo> {
