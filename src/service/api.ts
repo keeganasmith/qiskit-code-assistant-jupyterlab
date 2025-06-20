@@ -15,8 +15,8 @@
  */
 
 import { Notification } from '@jupyterlab/apputils';
-
 import { requestAPI } from '../utils/handler';
+
 import {
   IFeedbackResponse,
   IModelDisclaimer,
@@ -25,6 +25,7 @@ import {
   IResponseMessage,
   IServiceResponse
 } from '../utils/schema';
+import fs from 'fs';
 
 const AUTH_ERROR_CODES = [401, 403, 422];
 
@@ -270,4 +271,32 @@ export async function postFeedback(
       throw Error(response.statusText);
     }
   });
+}
+
+
+export async function sendQuestion(prompt: string): Promise<string> {
+  const ip = "10.71.8.113" //hard-coded for now, may or may not be difficult to get around this
+  const url = `http://${ip}:5000/infer`;
+  const headers = {
+    "Content-Type": "application/json"
+  };
+  const data = {
+    input: prompt,
+    length: 512,
+    model: "llama_8B"
+  };
+
+  console.log("Sending to URL:", url);
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(data)
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+  const json = await response.json();
+  return json["response"];
 }

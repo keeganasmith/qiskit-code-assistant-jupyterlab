@@ -20,6 +20,7 @@
 // import { checkAPIToken } from './token';
 //import { StatusBarWidget } from '../StatusBarWidget';
 import { ICompletionReturn } from '../utils/schema';
+import { sendQuestion } from './api';
 //import { IModelPromptResponse } from '../utils/schema'
 export const CHAR_LIMIT = 4_000;
 
@@ -44,8 +45,10 @@ export const CHAR_LIMIT = 4_000;
 // }
 
 export async function autoComplete(text: string): Promise<ICompletionReturn> {
+  
+  let result: string = await sendQuestion(text)
   const emptyReturn: ICompletionReturn = {
-    items: ["hello bob"],
+    items: [result],
     prompt_id: '1',
     input: ''
   };
