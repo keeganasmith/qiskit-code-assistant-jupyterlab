@@ -275,7 +275,7 @@ export async function postFeedback(
 
 export async function sendQuestion(prompt: string): Promise<string> {
   const ip = "10.71.8.113" //hard-coded for now, may or may not be difficult to get around this
-  const url = `http://${ip}:5000/infer`;
+  const url = `https://${ip}:5000/infer`;
   const headers = {
     "Content-Type": "application/json"
   };
