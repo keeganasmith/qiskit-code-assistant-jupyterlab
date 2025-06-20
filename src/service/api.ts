@@ -111,19 +111,20 @@ export async function postApiToken(apiToken: string): Promise<void> {
 export async function getModels(): Promise<IModelInfo[]> {
   return await requestAPI('models').then(async response => {
     //if (response.ok) {
-    if(true){
-      const json = await response.json();
-      console.debug('models list:', json);
-      return json['models'];
-    } else {
-      notifyInvalid(response);
-      console.error(
-        'Error getting models',
-        response.status,
-        response.statusText
-      );
-      throw Error(response.statusText);
-    }
+    console.log(response)
+    // if(true){
+    //   const json = await response.json();
+    //   console.debug('models list:', json);
+    //   return json['models'];
+    // } else {
+    //   notifyInvalid(response);
+    //   console.error(
+    //     'Error getting models',
+    //     response.status,
+    //     response.statusText
+    //   );
+    //   throw Error(response.statusText);
+    // }
   });
 }
 
