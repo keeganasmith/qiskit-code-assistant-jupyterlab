@@ -46,7 +46,7 @@ export const CHAR_LIMIT = 4_000;
 export async function autoComplete(text: string): Promise<ICompletionReturn> {
   const emptyReturn: ICompletionReturn = {
     items: ["hello bob"],
-    prompt_id: '',
+    prompt_id: '1',
     input: ''
   };
   return emptyReturn

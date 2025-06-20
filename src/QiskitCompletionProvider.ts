@@ -87,10 +87,11 @@ export class QiskitCompletionProvider implements ICompletionProvider {
     context: ICompletionContext
   ): Promise<CompletionHandler.ICompletionItemsReply> {
     const text = getInputText(request.text, context.widget);
-
+    console.log("text was: ", text)
     return autoComplete(text).then(results => {
       this.prompt_id = results.prompt_id;
       this.results = results.items;
+      console.log("results was: ", this.results)
       if (this.prompt_id) {
         lastPrompt = results;
         this.app.commands.notifyCommandChanged(FEEDBACK_COMMAND);
