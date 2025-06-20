@@ -110,7 +110,8 @@ export async function postApiToken(apiToken: string): Promise<void> {
 // GET /models
 export async function getModels(): Promise<IModelInfo[]> {
   return await requestAPI('models').then(async response => {
-    if (response.ok) {
+    //if (response.ok) {
+    if(true){
       const json = await response.json();
       console.debug('models list:', json);
       return json['models'];
