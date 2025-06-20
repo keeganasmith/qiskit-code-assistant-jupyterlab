@@ -20,7 +20,7 @@ import { refreshIcon } from '@jupyterlab/ui-components';
 import { Widget } from '@lumino/widgets';
 
 import { wipeLastPrompt } from './QiskitCompletionProvider';
-import { showDisclaimer } from './service/disclaimer';
+//import { showDisclaimer } from './service/disclaimer';
 import {
   getCurrentModel,
   getModelsList,
@@ -81,12 +81,10 @@ export class StatusBarWidget extends Widget {
           const model = modelsList.find(m => m.display_name === result.value);
           console.log("got to inner if statement with result: ", result)
           if (model) {
-            showDisclaimer(model._id).then(accepted => {
-              if (true) {
-                wipeLastPrompt();
-                setCurrentModel(model);
-              }
-            });
+            //showDisclaimer(model._id).then(accepted => {
+              wipeLastPrompt();
+              setCurrentModel(model);
+            
           }
         }
       });
