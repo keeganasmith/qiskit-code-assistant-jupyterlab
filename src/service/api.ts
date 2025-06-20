@@ -25,7 +25,6 @@ import {
   IResponseMessage,
   IServiceResponse
 } from '../utils/schema';
-import fs from 'fs';
 
 const AUTH_ERROR_CODES = [401, 403, 422];
 
