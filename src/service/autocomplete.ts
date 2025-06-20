@@ -49,35 +49,35 @@ export async function autoComplete(text: string): Promise<ICompletionReturn> {
     prompt_id: '',
     input: ''
   };
+  return emptyReturn
+  // return await checkAPIToken()
+  //   .then(async () => {
+  //     const startingOffset = Math.max(0, text.length - CHAR_LIMIT);
+  //     const requestText = text.slice(startingOffset, text.length);
+  //     const model = getCurrentModel();
 
-  return await checkAPIToken()
-    .then(async () => {
-      const startingOffset = Math.max(0, text.length - CHAR_LIMIT);
-      const requestText = text.slice(startingOffset, text.length);
-      const model = getCurrentModel();
-
-      if (model === undefined) {
-        console.error('Failed to send prompt', 'No model selected');
-        return emptyReturn;
-      } else if (model.disclaimer?.accepted) {
-        return await promptPromise(model._id, requestText);
-      } else {
-        return await showDisclaimer(model._id).then(async accepted => {
-          if (accepted) {
-            return await promptPromise(model._id, requestText);
-          } else {
-            console.error('Disclaimer not accepted');
-            return emptyReturn;
-          }
-        });
-      }
-    })
-    .catch(reason => {
-      console.error('Failed to send prompt', reason);
-      return emptyReturn;
-    })
-    .finally(() => {
-      // Remove loading icon from status bar
-      StatusBarWidget.widget.refreshStatusBar();
-    });
+  //     if (model === undefined) {
+  //       console.error('Failed to send prompt', 'No model selected');
+  //       return emptyReturn;
+  //     } else if (model.disclaimer?.accepted) {
+  //       return await promptPromise(model._id, requestText);
+  //     } else {
+  //       return await showDisclaimer(model._id).then(async accepted => {
+  //         if (accepted) {
+  //           return await promptPromise(model._id, requestText);
+  //         } else {
+  //           console.error('Disclaimer not accepted');
+  //           return emptyReturn;
+  //         }
+  //       });
+  //     }
+  //   })
+  //   .catch(reason => {
+  //     console.error('Failed to send prompt', reason);
+  //     return emptyReturn;
+  //   })
+  //   .finally(() => {
+  //     // Remove loading icon from status bar
+  //     StatusBarWidget.widget.refreshStatusBar();
+  //   });
 }
