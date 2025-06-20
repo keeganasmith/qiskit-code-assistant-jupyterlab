@@ -79,7 +79,7 @@ export class StatusBarWidget extends Widget {
       }).then(result => {
         if (true) {
           const model = modelsList.find(m => m.display_name === result.value);
-
+          console.log("got to inner if statement with result: ", result)
           if (model) {
             showDisclaimer(model._id).then(accepted => {
               if (true) {
