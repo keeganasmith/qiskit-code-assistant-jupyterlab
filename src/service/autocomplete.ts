@@ -21,6 +21,8 @@
 //import { StatusBarWidget } from '../StatusBarWidget';
 import { ICompletionReturn } from '../utils/schema';
 import { sendQuestion } from './api';
+import { ServerConnection } from '@jupyterlab/services';
+import { URLExt } from '@jupyterlab/coreutils';
 //import { IModelPromptResponse } from '../utils/schema'
 export const CHAR_LIMIT = 4_000;
 
@@ -46,13 +48,33 @@ export const CHAR_LIMIT = 4_000;
 
 export async function autoComplete(text: string): Promise<ICompletionReturn> {
   
-  let result: string = await sendQuestion(text)
+  // let result: string = await sendQuestion(text)
+  
+  const settings = ServerConnection.makeSettings();
+
+  // 2. Build the full URL under the base_url
+  const url = URLExt.join(
+    settings.baseUrl,
+    'api',
+    'my_extension',
+    'hello'
+  ) + `?name=${encodeURIComponent(text)}`;
+
+  // 3. Fire the request (it handles the token header for you)
+  const response = await ServerConnection.makeRequest(url, {}, settings);
+  if (!response.ok) {
+    throw new Error(`Error ${response.status}: ${response.statusText}`);
+  }
+
+  // 4. Parse the JSON body
+  const data = await response.json() as { message: string };
   const emptyReturn: ICompletionReturn = {
-    items: [result],
+    items: [data.message],
     prompt_id: '1',
     input: ''
   };
-  return emptyReturn
+  return emptyReturn;
+  //return emptyReturn
   // return await checkAPIToken()
   //   .then(async () => {
   //     const startingOffset = Math.max(0, text.length - CHAR_LIMIT);
