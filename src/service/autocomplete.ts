@@ -20,7 +20,7 @@
 // import { checkAPIToken } from './token';
 //import { StatusBarWidget } from '../StatusBarWidget';
 import { ICompletionReturn } from '../utils/schema';
-import { sendQuestion } from './api';
+//import { sendQuestion } from './api';
 import { ServerConnection } from '@jupyterlab/services';
 import { URLExt } from '@jupyterlab/coreutils';
 //import { IModelPromptResponse } from '../utils/schema'
