@@ -244,7 +244,7 @@ class PromptHandler(APIHandler):
         }
         #response = requests.post(url, headers=headers, json=data)
         #self.finish(json.dumps(response.json()["response"]))
-        self.finish(json.dumps("HELLO WORLD!"))
+        self.finish(json.dumps({"response": "HELLO WORLD!"}))
 
 
 class PromptAcceptanceHandler(APIHandler):
