@@ -243,7 +243,7 @@ class PromptHandler(APIHandler):
             "model": "llama_8B"
         }
         response = requests.post(url, headers=headers, json=data)
-        self.finish(json.dumps(response["response"]))
+        self.finish(json.dumps(response.json()["response"]))
 
 
 class PromptAcceptanceHandler(APIHandler):
