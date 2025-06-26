@@ -21,8 +21,8 @@
 //import { StatusBarWidget } from '../StatusBarWidget';
 import { ICompletionReturn } from '../utils/schema';
 //import { sendQuestion } from './api';
-import { ServerConnection } from '@jupyterlab/services';
-import { URLExt } from '@jupyterlab/coreutils';
+//import { ServerConnection } from '@jupyterlab/services';
+//import { URLExt } from '@jupyterlab/coreutils';
 import { postModelPrompt } from './api';
 //import { IModelPromptResponse } from '../utils/schema'
 export const CHAR_LIMIT = 4_000;

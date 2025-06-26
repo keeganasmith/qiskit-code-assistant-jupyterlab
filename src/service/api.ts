@@ -21,7 +21,7 @@ import {
   IFeedbackResponse,
   IModelDisclaimer,
   IModelInfo,
-  IModelPromptResponse,
+  //IModelPromptResponse,
   IResponseMessage,
   IServiceResponse
 } from '../utils/schema';
