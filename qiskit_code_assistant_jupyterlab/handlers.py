@@ -228,42 +228,10 @@ class DisclaimerAcceptanceHandler(APIHandler):
 class PromptHandler(APIHandler):
     @tornado.web.authenticated
     def post(self, id):
-        if runtime_configs["is_openai"]:
-            url = url_path_join(runtime_configs["service_url"], OPENAI_VERSION, "completions")
-            result = {}
-            try:
-                r = requests.post(url,
-                                  headers=get_header(),
-                                  json={
-                                      "model": id,
-                                      "prompt": self.get_json_body()["input"]
-                                  })
-                r.raise_for_status()
-
-                if r.ok:
-                    response = r.json()
-                    result = {
-                        "results": list(map(lambda c: {"generated_text": c["text"]},
-                                            response["choices"])),
-                        "prompt_id": response["id"],
-                        "created_at": datetime.fromtimestamp(int(response["created"])).isoformat()
-                    }
-            except requests.exceptions.HTTPError as err:
-                self.set_status(err.response.status_code)
-                self.finish(json.dumps(err.response.json()))
-            else:
-                self.finish(json.dumps(result))
-        else:
-            url = url_path_join(runtime_configs["service_url"], "model", id, "prompt")
-
-            try:
-                r = requests.post(url, headers=get_header(), json=self.get_json_body())
-                r.raise_for_status()
-            except requests.exceptions.HTTPError as err:
-                self.set_status(err.response.status_code)
-                self.finish(json.dumps(err.response.json()))
-            else:
-                self.finish(json.dumps(r.json()))
+        #input_data = self.get_json_body()
+        #data = {"greetings": "Hello {}, enjoy JupyterLab!".format(input_data["name"])}
+        data = {"response": "Hello World!"}
+        self.finish(json.dumps(data))
 
 
 class PromptAcceptanceHandler(APIHandler):

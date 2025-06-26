@@ -195,7 +195,7 @@ export async function postDisclaimerAccept(
 export async function postModelPrompt(
   model_id: string,
   input: string
-): Promise<IModelPromptResponse> {
+): Promise<string>{
   return await requestAPI(`model/${model_id}/prompt`, {
     method: 'POST',
     body: JSON.stringify({ input })
@@ -203,7 +203,7 @@ export async function postModelPrompt(
     if (response.ok) {
       const promptRes = await response.json();
       console.debug('prompt:', promptRes);
-      return promptRes;
+      return promptRes["response"];
     } else {
       notifyInvalid(response);
       console.error(
