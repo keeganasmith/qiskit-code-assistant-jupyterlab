@@ -18,7 +18,7 @@ import json
 import os
 from datetime import datetime
 from pathlib import Path
-
+import pickle
 import requests
 import tornado
 from jupyter_server.base.handlers import APIHandler
@@ -228,10 +228,22 @@ class DisclaimerAcceptanceHandler(APIHandler):
 class PromptHandler(APIHandler):
     @tornado.web.authenticated
     def post(self, id):
-        #input_data = self.get_json_body()
+        input_data = self.get_json_body()
+        text = input_data["input"]
         #data = {"greetings": "Hello {}, enjoy JupyterLab!".format(input_data["name"])}
-        data = {"response": "Hello World!"}
-        self.finish(json.dumps(data))
+        #data = {"response": "Hello World!"}
+        url = ""
+        with open("/sw/hprc/sw/dor-hprc-venv-manager/codeai/ip.pkl", "rb") as my_file:
+            ip = pickle.load(my_file)
+            url = f"http://{ip}:5000/infer"
+        headers = {"Content-Type": "application/json"}
+        data = {
+            "input": text,
+            "length": 512,
+            "model": "llama_8B"
+        }
+        response = requests.post(url, headers=headers, json=data)
+        self.finish(json.dumps(response["response"]))
 
 
 class PromptAcceptanceHandler(APIHandler):
