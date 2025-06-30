@@ -24,7 +24,8 @@ import tornado
 from jupyter_server.base.handlers import APIHandler
 from jupyter_server.utils import url_path_join
 from qiskit_ibm_runtime import QiskitRuntimeService
-
+import logging
+logger = logging.getLogger(__name__)
 OPENAI_VERSION = "v1"
 
 runtime_configs = {
@@ -228,13 +229,13 @@ class DisclaimerAcceptanceHandler(APIHandler):
 class PromptHandler(APIHandler):
     @tornado.web.authenticated
     def post(self, id):
-        print("got to post hooray")
+        logger.info("got to post hooray")
         input_data = self.get_json_body()
         text = input_data["input"]
         #data = {"greetings": "Hello {}, enjoy JupyterLab!".format(input_data["name"])}
         #data = {"response": "Hello World!"}
         url = ""
-        print("got to open within post")
+        logger.info("got to open within post")
         with open("/sw/hprc/sw/dor-hprc-venv-manager/codeai/ip.pkl", "rb") as my_file:
             ip = pickle.load(my_file)
             url = f"http://{ip}:5000/infer"
@@ -244,7 +245,8 @@ class PromptHandler(APIHandler):
             "length": 512,
             "model": "llama_8B"
         }
-        print(f"sending to {url}")
+        logger.info(f"sending to {url}")
+
         response = requests.post(url, headers=headers, json=data)
         self.finish(json.dumps(response.json()))
 
